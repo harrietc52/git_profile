@@ -16,14 +16,14 @@
     <template>
       <article class="profile">
         <section class="pic">
-        <img src={{avatar_url}}>
+        <img src={{avatar_url}} height="200" width="200">
         </section>
 
         <section class="stats">
         <a href={{html_url}}>{{login}}</a>
 
-        Repos: {{public_repos}}
-        Followers: {{followers}}
+        <p>Repos: {{public_repos}}</p>
+        <p>Followers: {{followers}}</p>
 
         </section>
       </article>
