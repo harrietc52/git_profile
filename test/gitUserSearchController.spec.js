@@ -9,7 +9,6 @@ describe('GitUserSearchController', function() {
 
   it('initialises with an empty search result and term', function() {
     expect(ctrl.searchResult).toBeUndefined();
-    expect(ctrl.searchTerm).toBeUndefined();
   });
 
   describe('when searching for a user', function() {
@@ -28,6 +27,7 @@ describe('GitUserSearchController', function() {
     ];
 
     it('displays search results', function() {
+      ctrl.doSearch();
       expect(ctrl.searchResult.items).toEqual(items);
     });
   });
