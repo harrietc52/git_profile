@@ -9,9 +9,20 @@ describe('GitUserSearchController', function() {
 
   it('initialises with an empty search result and term', function() {
     expect(ctrl.searchResult).toBeUndefined();
+    expect(ctrl.searchTerm).toBeUndefined();
   });
 
   describe('when searching for a user', function() {
+
+    var httpBackend;
+      beforeEach(inject(function($httpBackend) {
+        httpBackend = $httpBackend
+        httpBackend
+          .when("GET", "https://api.github.com/search/users?q=hello")
+          .respond(
+            { items: items }
+          );
+      }));
 
     var items = [
       {
@@ -27,7 +38,9 @@ describe('GitUserSearchController', function() {
     ];
 
     it('displays search results', function() {
+      ctrl.searchTerm = 'hello';
       ctrl.doSearch();
+      httpBackend.flush();
       expect(ctrl.searchResult.items).toEqual(items);
     });
   });
